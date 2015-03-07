@@ -3,7 +3,7 @@
  *
  * @flux: http://git.io/pesS
  */
-import ServerActions from "../actions/ServerActions";
+import SAMPLE_DATA from "./SAMPLE_DATA";
 
 // !!! Please Note !!!
 // We are using localStorage as an example, but in a real-world scenario, this
@@ -13,11 +13,16 @@ import ServerActions from "../actions/ServerActions";
 // communication and server-side processing.
 const ChatWebAPIUtils = {
   getAllMessages () {
+    /*
+     * Referral implementations:
+     *
+     * @flux: http://git.io/pURh
+     */
+    localStorage.clear();
     // simulate retrieving data from a database
-    const rawMessages = JSON.parse(localStorage.getItem("messages"));
-
+    localStorage.setItem("messages", JSON.stringify(SAMPLE_DATA));
     // simulate success callback
-    return ServerActions.receiveAll(rawMessages);
+    return Promise.resolve(SAMPLE_DATA);
   },
 
   createMessage (message, threadName) {
@@ -38,9 +43,7 @@ const ChatWebAPIUtils = {
     localStorage.setItem("messages", JSON.stringify(rawMessages));
 
     // simulate success callback
-    return Promise.resolve(true).then(() => {
-      return ServerActions.receiveCreatedMessage(createdMessage);
-    });
+    return Promise.resolve(createdMessage);
   },
 };
 

@@ -17,7 +17,9 @@ const MessageActions = Goflux.defineActions("MessageActions", function (context)
       }).then((dispatchedResult) => {
         // ignore dispatchResult for now.
         const message = ChatMessageUtils.getCreatedMessageData(text, currentThreadID);
-        ChatWebAPIUtils.createMessage(message);
+        ChatWebAPIUtils.createMessage(message).then((createdMessage) => {
+          return context.gofluxAction("ServerActions").receiveCreatedMessage(createdMessage);
+        });
         return dispatchResult;
       });
     },
