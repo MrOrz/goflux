@@ -1,5 +1,6 @@
 import ActionDescriptor from "./internals/ActionDescriptor";
 import StoreDescriptor from "./internals/StoreDescriptor";
+import GofluxContext from "./internals/GofluxContext";
 
 class Goflux {
 
@@ -22,6 +23,12 @@ class Goflux {
 
   registerStoreDescriptor (storeDescriptor) {
     this._storeBy[storeDescriptor.name] = storeDescriptor;
+  }
+
+  createContext () {
+    const gofluxContext = new GofluxContext();
+    gofluxContext._initialize_(this._actionBy, this._storeBy);
+    return gofluxContext;
   }
 }
 
