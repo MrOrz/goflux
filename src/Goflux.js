@@ -1,11 +1,11 @@
-import ActionDescriptor from "./internals/ActionDescriptor";
+import ActionsDescriptor from "./internals/ActionsDescriptor";
 import StoreDescriptor from "./internals/StoreDescriptor";
 import GofluxContext from "./internals/GofluxContext";
 
 class Goflux {
 
-  static defineActions (actionName, actionFactory) {
-    return new ActionDescriptor(actionName, actionFactory);
+  static defineActions (actionsName, actionsFactory) {
+    return new ActionsDescriptor(actionsName, actionsFactory);
   }
 
   static defineStore (storeName, storeEventMethodMappings, storeFactory) {
@@ -13,12 +13,12 @@ class Goflux {
   }
 
   constructor () {
-    this._actionBy = {};
+    this._actionsBy = {};
     this._storeBy = {};
   }
 
-  registerActionsDescriptor (actionDescriptor) {
-    this._actionBy[actionDescriptor.name] = actionDescriptor;
+  registerActionsDescriptor (actionsDescriptor) {
+    this._actionsBy[actionsDescriptor.name] = actionsDescriptor;
   }
 
   registerStoreDescriptor (storeDescriptor) {
@@ -27,7 +27,7 @@ class Goflux {
 
   createContext () {
     const gofluxContext = new GofluxContext();
-    gofluxContext._initialize_(this._actionBy, this._storeBy);
+    gofluxContext._initialize_(this._actionsBy, this._storeBy);
     return gofluxContext;
   }
 }

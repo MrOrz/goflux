@@ -1,4 +1,4 @@
-class ActionDescriptor {
+class ActionsDescriptor {
 
   constructor (name, factory) {
     this._name = name;
@@ -10,4 +10,4 @@ class ActionDescriptor {
   }
 }
 
-export default ActionDescriptor;
+export default ActionsDescriptor;

@@ -41,9 +41,9 @@ const ThreadListItem = React.createClass({
 
   _on_click_ () {
     /*
-     * this.gofluxAction is a method provided by GofluxMixin.
+     * this.gofluxActions is a method provided by GofluxMixin.
      */
-    this.gofluxAction("ThreadActions").clickThread(this.props.thread.id);
+    this.gofluxActions("ThreadActions").clickThread(this.props.thread.id);
   },
 
 });

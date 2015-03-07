@@ -12,7 +12,7 @@ function index (req, res, next) {
   // per request per context
   const context = goflux.createContext();
 
-  context.gofluxAction("RoutingActions")
+  context.getActions("RoutingActions")
   .route(req.url, req.params)
   /*
    * The RoutingActions.route method will return a promise. When the promise

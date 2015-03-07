@@ -1,10 +1,18 @@
 class GofluxContext {
 
+  dispatch (eventName, payload) {
+
+  }
+
+  getActions (actionsName) {
+
+  }
+
   constructor () {
   }
 
-  _initialize_ (actionDescriptorsMap, storeDescriptorsMap) {
-    
+  _initialize_ (actionsDescriptorsMap, storeDescriptorsMap) {
+
   }
 
 }
