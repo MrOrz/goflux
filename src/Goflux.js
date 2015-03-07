@@ -13,10 +13,15 @@ class Goflux {
 
   constructor () {
     this._actionBy = {};
+    this._storeBy = {};
   }
 
   registerActionsDescriptor (actionDescriptor) {
     this._actionBy[actionDescriptor.name] = actionDescriptor;
+  }
+
+  registerStoreDescriptor (storeDescriptor) {
+    this._storeBy[storeDescriptor.name] = storeDescriptor;
   }
 }
 
