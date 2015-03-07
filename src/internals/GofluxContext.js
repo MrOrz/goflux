@@ -8,6 +8,14 @@ class GofluxContext {
 
   }
 
+  waitFor (storeNames) {
+
+  }
+
+  getStore (storeName) {
+
+  }
+
   constructor () {
   }
 
