@@ -6,7 +6,7 @@
 import React from "react/addons";
 import {GofluxMixin} from "goflux";
 
-import ChatApp from "./ChatApp.react";
+import ChatApp from "../../../chat/src/components/ChatApp.react";
 
 const IsomorphicApp = React.createClass({
   displayName: "IsomorphicApp",
