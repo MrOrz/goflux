@@ -11,16 +11,23 @@ import ChatWebAPIUtils from "../utils/ChatWebAPIUtils";
 const MessageActions = Goflux.defineActions("MessageActions", function (context) {
   return {
     createMessage (text, currentThreadID) {
-      return context.dispatch("CREATE_MESSAGE", {/* payload */
+      context.dispatch("CREATE_MESSAGE", {/* payload */
         text,
         currentThreadID,
-      }).then((dispatchedResult) => {
-        // ignore dispatchResult for now.
+      });
+
+      return Promise.resolve(true).then(() => {
+        /*
+         * Only after current tick, you're allowed to execute another action
+         */
         const message = ChatMessageUtils.getCreatedMessageData(text, currentThreadID);
-        ChatWebAPIUtils.createMessage(message).then((createdMessage) => {
+        const promise = ChatWebAPIUtils.createMessage(message).then((createdMessage) => {
           return context.gofluxAction("ServerActions").receiveCreatedMessage(createdMessage);
         });
-        return dispatchResult;
+        /*
+         * Ignore promise here since we don't care.
+         */
+        return true;
       });
     },
   };

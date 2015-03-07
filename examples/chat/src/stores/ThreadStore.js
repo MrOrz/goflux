@@ -101,13 +101,11 @@ class ThreadStore extends EventEmitter {
     this._currentID = payload.threadID;
     this._threads[this._currentID].lastMessage.isRead = true;
     this._emit_change_();
-    return true;
   },
 
   _receive_raw_messages_ ({rawMessages}) {
     this._init_(rawMessages);
     this._emit_change_();
-    return true;
   },
 });
 

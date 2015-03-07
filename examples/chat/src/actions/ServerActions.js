@@ -8,15 +8,17 @@ import Goflux from "goflux";
 const ServerActions = Goflux.defineActions("ServerActions", function (context) {
   return {
     receiveAll (rawMessages) {
-      return context.dispatch("RECEIVE_RAW_MESSAGES", {/* payload */
+      context.dispatch("RECEIVE_RAW_MESSAGES", {/* payload */
         rawMessages,
       });
+      return Promise.resolve(true);
     },
 
     receiveCreatedMessage (createdMessage) {
-      return context.dispatch("RECEIVE_RAW_CREATED_MESSAGE", {/* payload */
+      context.dispatch("RECEIVE_RAW_CREATED_MESSAGE", {/* payload */
         rawMessage: createdMessage,
       });
+      return Promise.resolve(true);
     },
   };
 });
