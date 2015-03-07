@@ -88,13 +88,12 @@ function (context) {
     },
 
     _click_thread_ () {
-      return context.waitFor(["ThreadStore"]).then(([threadStoreHandleResult]) => {
-        this._mark_all_in_thread_read_(
-          context.getStore("ThreadStore").getCurrentID()
-        );
-        this._emit_change_();
-        return true;
-      });
+      context.waitFor(["ThreadStore"]);
+
+      this._mark_all_in_thread_read_(
+        context.getStore("ThreadStore").getCurrentID()
+      );
+      this._emit_change_();
     },
 
     _create_message_ (payload) {
@@ -104,18 +103,17 @@ function (context) {
       );
       _messages[message.id] = message;
       this._emit_change_();
-      return true;
     },
 
     _receive_raw_messages_ ({rawMessages}) {
       this._add_messages_(rawMessages);
-      return context.waitFor(["ThreadStore"]).then(([threadStoreHandleResult]) => {
-        this._mark_all_in_thread_read_(
-          context.getStore("ThreadStore").getCurrentID()
-        );
-        this._emit_change_();
-        return true;
-      });
+
+      context.waitFor(["ThreadStore"]);
+
+      this._mark_all_in_thread_read_(
+        context.getStore("ThreadStore").getCurrentID()
+      );
+      this._emit_change_();
     },
   };
 });

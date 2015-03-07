@@ -48,17 +48,15 @@ class UnreadThreadStore extends EventEmitter {
   },
 
   _click_thread_ () {
-    return this._context.waitFor(["ThreadStore", "MessageStore"]).then(() => {
-      this._emit_change_();
-      return true;
-    });
+    this._context.waitFor(["ThreadStore", "MessageStore"]);
+
+    this._emit_change_();
   },
 
   _receive_raw_messages_ () {
-    return this._context.waitFor(["ThreadStore", "MessageStore"]).then(() => {
-      this._emit_change_();
-      return true;
-    });
+    this._context.waitFor(["ThreadStore", "MessageStore"]);
+
+    this._emit_change_();
   },
 });
 
