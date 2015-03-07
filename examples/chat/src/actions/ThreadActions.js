@@ -5,7 +5,7 @@
  */
 import Goflux from "goflux";
 
-const ThreadActions = Goflux.defineActions(function (context) {
+const ThreadActions = Goflux.defineActions("ThreadActions", function (context) {
   return {
     clickThread (threadID) {
       return context.dispatch("CLICK_THREAD", {/* payload */

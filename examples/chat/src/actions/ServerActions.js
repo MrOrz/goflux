@@ -5,7 +5,7 @@
  */
 import Goflux from "goflux";
 
-const ServerActions = Goflux.defineActions(function (context) {
+const ServerActions = Goflux.defineActions("ServerActions", function (context) {
   return {
     receiveAll (rawMessages) {
       return context.dispatch("RECEIVE_RAW_MESSAGES", {/* payload */

@@ -8,7 +8,7 @@ import Goflux from "goflux";
 import ChatMessageUtils from "../utils/ChatMessageUtils";
 import ChatWebAPIUtils from "../utils/ChatWebAPIUtils";
 
-const MessageActions = Goflux.defineActions(function (context) {
+const MessageActions = Goflux.defineActions("MessageActions", function (context) {
   return {
     createMessage (text, currentThreadID) {
       return context.dispatch("CREATE_MESSAGE", {/* payload */
