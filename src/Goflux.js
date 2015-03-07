@@ -7,6 +7,11 @@ class Goflux {
   }
 
   constructor () {
+    this._actionBy = {};
+  }
+
+  registerActionsDescriptor (actionDescriptor) {
+    this._actionBy[actionDescriptor.name] = actionDescriptor;
   }
 }
 
