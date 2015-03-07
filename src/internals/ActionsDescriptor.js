@@ -8,6 +8,10 @@ class ActionsDescriptor {
   get name () {
     return this._name;
   }
+
+  _create_with_context_ (context) {
+    return new this._factory(context);
+  }
 }
 
 export default ActionsDescriptor;

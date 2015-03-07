@@ -7,7 +7,7 @@ class GofluxContext {
   }
 
   getActions (actionsName) {
-
+    return this._actionsBy[actionsName];
   }
 
   waitFor (storeNames) {
@@ -32,6 +32,9 @@ class GofluxContext {
       waitFor: true,
       getStore: true,
     });
+
+    this._actionsBy = {};
+    this._storesBy = {};
   }
 
   _create_restricted_context (restrictedName, validMethodNameMappings) {
@@ -53,7 +56,11 @@ class GofluxContext {
   }
 
   _initialize_ (actionsDescriptorsMap, storeDescriptorsMap) {
-
+    for (var actionsName in actionsDescriptorsMap) {
+      const actionsDescriptor = actionsDescriptorsMap[actionsName];
+      const actionsInstance = actionsDescriptor._create_with_context_(this._actionsContext);
+      this._actionsBy[actionsName] = actionsInstance;
+    }
   }
 
 }
