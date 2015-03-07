@@ -5,6 +5,8 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
+    "build": "babel src --out-dir lib",
+    "dev": "babel src --out-dir lib --watch",
     "test": "jest"
   },
   "repository": {
@@ -28,5 +30,8 @@
   "bugs": {
     "url": "https://github.com/tomchentw/goflux/issues"
   },
-  "homepage": "https://github.com/tomchentw/goflux"
+  "homepage": "https://github.com/tomchentw/goflux",
+  "devDependencies": {
+    "babel": "^4.7.1"
+  }
 }
