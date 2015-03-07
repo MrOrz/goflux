@@ -8,9 +8,10 @@ import Goflux from "goflux";
 const ThreadActions = Goflux.defineActions("ThreadActions", function (context) {
   return {
     clickThread (threadID) {
-      return context.dispatch("CLICK_THREAD", {/* payload */
+      context.dispatch("CLICK_THREAD", {/* payload */
         threadID,
       });
+      return Promise.resolve(true);
     },
   };
 });
