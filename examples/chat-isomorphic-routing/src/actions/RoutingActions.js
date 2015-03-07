@@ -4,7 +4,6 @@
  * @fluxible: http://git.io/pUg1
  */
 import Goflux from "goflux";
-import co from "co";
 
 import ChatWebAPIUtils from "../utils/ChatWebAPIUtils";
 
@@ -21,31 +20,24 @@ const RoutingActions = Goflux.defineActions("RoutingActions", function (context)
       var matchedResult;
       if ("/threads" === url) {
 
-        return context.dispatch("OPEN_THREAD_INDEX_PAGE", {/* payload */
-        }).then(() => {
+        context.dispatch("OPEN_THREAD_INDEX_PAGE", {/* payload */
+        });
 
-          return ChatWebAPIUtils.getAllMessages();
-        }).then((rawMessages) => {
+        return ChatWebAPIUtils.getAllMessages().then((rawMessages) => {
 
           return context.gofluxAction("ServerActions").receiveAll(rawMessages);
         });
 
       } else if (matchedResult = url.match(/\/threads\/(\d+)/)) {
-        /*
-         * Tired of then-able flow control style? Use generator with co instead.
-         */
-        return co(function* () {
-          const threadId = matchedResult[1];
+        const threadId = matchedResult[1];
 
-          yield context.dispatch("OPEN_THREAD_SHOW_PAGE", {/* payload */
-            id: threadId,
-          });
-
-          yield context.gofluxAction("ThreadActions").clickThread(threadId);
-
-          return true;
+        context.dispatch("OPEN_THREAD_SHOW_PAGE", {/* payload */
+          id: threadId,
         });
 
+        context.gofluxAction("ThreadActions").clickThread(threadId);
+
+        return Promise.resolve(true);
       } else {
         return Promise.reject(404);
       }

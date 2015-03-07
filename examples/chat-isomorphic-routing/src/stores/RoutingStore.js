@@ -43,14 +43,14 @@ class RoutingStore extends EventEmitter {
 
   _open_thread_index_page_ () {
     this._pageTitle = "Thread Index";
+
     this._emit_change_();
-    return true;
   },
 
   _open_thread_show_page_ ({id}) {
     this._pageTitle = `Thread Show : ${ id }`;
+
     this._emit_change_();
-    return true;
   },
 });
 
