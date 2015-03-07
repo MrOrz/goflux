@@ -1,9 +1,13 @@
+import Dispatcher from "flux/lib/Dispatcher";
 import invariant from "flux/lib/invariant";
 
 class GofluxContext {
 
   dispatch (eventName, payload) {
-
+    this._dispatcher.dispatch({
+      _event_name_: eventName,
+      _payload_: payload,
+    });
   }
 
   getActions (actionsName) {
@@ -11,11 +15,12 @@ class GofluxContext {
   }
 
   waitFor (storeNames) {
-
+    const dispatchTokens = storeNames.map((storeName) => this._dispatchTokenBy[storeName]);
+    this._dispatcher.waitFor(dispatchTokens);
   }
 
   getStore (storeName) {
-
+    return this._storesBy[storeName];
   }
 
   constructor () {
@@ -35,6 +40,8 @@ class GofluxContext {
 
     this._actionsBy = {};
     this._storesBy = {};
+    this._dispatchTokenBy = {};
+    this._dispatcher = new Dispatcher();
   }
 
   _create_restricted_context (restrictedName, validMethodNameMappings) {
@@ -60,6 +67,14 @@ class GofluxContext {
       const actionsDescriptor = actionsDescriptorsMap[actionsName];
       const actionsInstance = actionsDescriptor._create_with_context_(this._actionsContext);
       this._actionsBy[actionsName] = actionsInstance;
+    }
+
+    for (var storeName in storeDescriptorsMap) {
+      const storeDescriptor = storeDescriptorsMap[storeName];
+      const {storeInstance, dispatchHandler} = storeDescriptor._create_with_context_(this._storeContext);
+
+      this._storesBy[storeName] = storeInstance;
+      this._dispatchTokenBy[storeName] = this._dispatcher.register(dispatchHandler);
     }
   }
 
