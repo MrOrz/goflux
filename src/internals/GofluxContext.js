@@ -23,6 +23,25 @@ class GofluxContext {
     return this._storesBy[storeName];
   }
 
+  dehydrate () {
+    const persistedStateBy = {};
+    const {_storesBy} = this;
+
+    for (var storeName in _storesBy) {
+      persistedStateBy[storeName] = _storesBy[storeName].dehydrate();
+    }
+    return persistedStateBy;
+  }
+
+  rehydrate (persistedState) {
+    const {_storesBy} = this;
+
+    for (var storeName in persistedState) {
+      _storesBy[storeName].rehydrate(persistedState[storeName]);
+    }
+    return this;
+  }
+
   constructor () {
     this._publicContext = this._create_restricted_context_("public", {
       getActions: true,

@@ -30,6 +30,7 @@ class Goflux {
     gofluxContext._initialize_(this._actionsBy, this._storeBy);
     return gofluxContext._publicContext;
   }
+
 }
 
 export default Goflux;
