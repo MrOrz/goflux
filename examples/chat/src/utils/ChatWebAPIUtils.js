@@ -36,7 +36,7 @@ const ChatWebAPIUtils = {
       threadID,
       threadName,
       authorName: message.authorName,
-      text,
+      text: message.text,
       timestamp,
     };
     rawMessages.push(createdMessage);

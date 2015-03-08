@@ -13,7 +13,7 @@ import ThreadListItem from "./ThreadListItem.react";
 const ThreadSection = React.createClass({
   displayName: "ThreadSection",
 
-  mixins: [GofluxMixin, StoreWatchMixin(["ThreadStore", "UnreadThreadStore"], CHANGE_EVENT, "_on_store_changed_")],
+  mixins: [GofluxMixin(React), StoreWatchMixin(["ThreadStore", "UnreadThreadStore"], CHANGE_EVENT, "_on_store_changed_")],
 
   _get_state_from_stores_ () {
     /*

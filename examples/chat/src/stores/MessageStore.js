@@ -73,7 +73,7 @@ function (context) {
         if (!_messages[message.id]) {
           _messages[message.id] = ChatMessageUtils.convertRawMessage(
             message,
-            ThreadStore.getCurrentID()
+            context.getStore("ThreadStore").getCurrentID()
           );
         }
       });

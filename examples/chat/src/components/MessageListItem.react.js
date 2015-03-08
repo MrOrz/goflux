@@ -9,7 +9,7 @@ import {GofluxMixin} from "goflux";
 const MessageListItem = React.createClass({
   displayName: "MessageListItem",
 
-  mixins: [GofluxMixin],
+  mixins: [GofluxMixin(React)],
 
   propTypes: {
     message: React.PropTypes.object,
