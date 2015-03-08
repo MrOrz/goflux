@@ -24,16 +24,17 @@ class GofluxContext {
   }
 
   constructor () {
-    this._publicContext = this._create_restricted_context("public", {
+    this._publicContext = this._create_restricted_context_("public", {
       getActions: true,
+      getStore: true,
     });
 
-    this._actionsContext = this._create_restricted_context("actions", {
+    this._actionsContext = this._create_restricted_context_("actions", {
       dispatch: true,
       getActions: true,
     });
 
-    this._storeContext = this._create_restricted_context("store", {
+    this._storeContext = this._create_restricted_context_("store", {
       waitFor: true,
       getStore: true,
     });
@@ -44,7 +45,7 @@ class GofluxContext {
     this._dispatcher = new Dispatcher();
   }
 
-  _create_restricted_context (restrictedName, validMethodNameMappings) {
+  _create_restricted_context_ (restrictedName, validMethodNameMappings) {
     function restrictFn () {
       invariant(false, "function called on restricted (%s) context.", restrictedName);
     }

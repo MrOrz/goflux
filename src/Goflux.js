@@ -28,7 +28,7 @@ class Goflux {
   createContext () {
     const gofluxContext = new GofluxContext();
     gofluxContext._initialize_(this._actionsBy, this._storeBy);
-    return gofluxContext;
+    return gofluxContext._publicContext;
   }
 }
 
