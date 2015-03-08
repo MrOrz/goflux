@@ -1,0 +1,50 @@
+{
+  "name": "reactjstw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/client.js",
+  "scripts": {
+    "start": "node --harmony server/index.js",
+    "build_client": "webpack --config config/webpack-client.js",
+    "build_server": "webpack --config config/webpack-server.js",
+    "build": "npm run build_client && npm run build_server",
+    "dev_client": "webpack --watch --config config/webpack-client.js",
+    "dev_server": "webpack --watch --config config/webpack-server.js",
+    "dev": "npm run dev_client & npm run dev_server & npm start",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tomchentw/goflux"
+  },
+  "author": {
+    "name": "tomchentw",
+    "email": "developer@tomchentw.com",
+    "url": "https://github.com/tomchentw"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "http://tomchentw.mit-license.org"
+  },
+  "bugs": {
+    "url": "https://github.com/tomchentw/goflux/issues"
+  },
+  "homepage": "https://github.com/tomchentw/goflux",
+  "dependencies": {
+    "koa": "^0.18.1",
+    "koa-static": "^1.4.9",
+    "react": "^0.12.2"
+  },
+  "devDependencies": {
+    "babel-core": "^4.7.3",
+    "babel-loader": "^4.1.0",
+    "css-loader": "^0.9.1",
+    "jest": "^0.1.37",
+    "null-loader": "^0.1.1",
+    "style-loader": "^0.8.3",
+    "webpack": "^1.7.2"
+  },
+  "jest": {
+    "rootDir": "./src"
+  }
+}
