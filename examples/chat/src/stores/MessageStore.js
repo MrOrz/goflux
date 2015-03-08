@@ -73,7 +73,7 @@ function (context) {
         if (!_messages[message.id]) {
           _messages[message.id] = ChatMessageUtils.convertRawMessage(
             message,
-            ThreadStore.getCurrentID(),
+            ThreadStore.getCurrentID()
           );
         }
       });
@@ -99,7 +99,7 @@ function (context) {
     _create_message_ (payload) {
       const message = ChatMessageUtils.getCreatedMessageData(
         payload.text,
-        payload.currentThreadID,
+        payload.currentThreadID
       );
       _messages[message.id] = message;
       this._emit_change_();

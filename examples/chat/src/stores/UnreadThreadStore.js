@@ -3,7 +3,7 @@
  *
  * @flux: http://git.io/peiA
  */
-import {EventEmitter} from "event";
+import {EventEmitter} from "events";
 import Goflux from "goflux";
 
 import CHANGE_EVENT from "../utils/CHANGE_EVENT";
@@ -37,7 +37,7 @@ class UnreadThreadStore extends EventEmitter {
       }
     }
     return unreadCount;
-  },
+  }
   /*
    * Below are private functions and some dispatch handlers
    * Special naming convention:
@@ -45,19 +45,19 @@ class UnreadThreadStore extends EventEmitter {
    */
   _emit_change_ () {
     this.emit(CHANGE_EVENT);
-  },
+  }
 
   _click_thread_ () {
     this._context.waitFor(["ThreadStore", "MessageStore"]);
 
     this._emit_change_();
-  },
+  }
 
   _receive_raw_messages_ () {
     this._context.waitFor(["ThreadStore", "MessageStore"]);
 
     this._emit_change_();
-  },
+  }
 });
 
 export default UnreadThreadStore;

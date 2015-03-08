@@ -3,7 +3,7 @@
  *
  * @flux: http://git.io/pewu
  */
-import {EventEmitter} from "event";
+import {EventEmitter} from "events";
 import Goflux from "goflux";
 
 import CHANGE_EVENT from "../utils/CHANGE_EVENT";
@@ -36,11 +36,11 @@ class ThreadStore extends EventEmitter {
    */
   get (id) {
     return this._threads[id];
-  },
+  }
 
   getAll () {
     return this._threads;
-  },
+  }
 
   getAllChrono () {
     const orderedThreads = [];
@@ -57,15 +57,15 @@ class ThreadStore extends EventEmitter {
       return 0;
     });
     return orderedThreads;
-  },
+  }
 
   getCurrentID () {
     return this._currentID;
-  },
+  }
 
   getCurrent () {
     return this.get(this.getCurrentID());
-  },
+  }
   /*
    * Below are private functions and some dispatch handlers
    * Special naming convention:
@@ -73,7 +73,7 @@ class ThreadStore extends EventEmitter {
    */
   _emit_change_ () {
     this.emit(CHANGE_EVENT);
-  },
+  }
 
   _init_ (rawMessages) {
     rawMessages.forEach((message) => {
@@ -95,18 +95,18 @@ class ThreadStore extends EventEmitter {
     }
 
     this._threads[this._currentID].lastMessage.isRead = true;
-  },
+  }
 
   _click_thread_ (payload) {
     this._currentID = payload.threadID;
     this._threads[this._currentID].lastMessage.isRead = true;
     this._emit_change_();
-  },
+  }
 
   _receive_raw_messages_ ({rawMessages}) {
     this._init_(rawMessages);
     this._emit_change_();
-  },
+  }
 });
 
 export default ThreadStore;

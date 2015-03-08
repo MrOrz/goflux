@@ -5,10 +5,12 @@
  */
 import React from "react/addons";
 
-import ChatWebAPIUtils from "../utils/ChatWebAPIUtils";
+import ChatWebAPIUtils from "./utils/ChatWebAPIUtils";
 
 import goflux from "./goflux";
 import ChatApp from "./components/ChatApp.react";
+
+require("./client.css");
 
 const context = goflux.createContext();
 
