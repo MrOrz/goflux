@@ -46,6 +46,8 @@ class GofluxContext {
     this._publicContext = this._create_restricted_context_("public", {
       getActions: true,
       getStore: true,
+      dehydrate: true,
+      rehydrate: true,
     });
 
     this._actionsContext = this._create_restricted_context_("actions", {
@@ -65,19 +67,21 @@ class GofluxContext {
   }
 
   _create_restricted_context_ (restrictedName, validMethodNameMappings) {
-    function restrictFn () {
-      invariant(false, "function called on restricted (%s) context.", restrictedName);
-    }
+    const restrictDefinition = {
+      value: function restrictFn () {
+        invariant(false, "function called on restricted (%s) context.", restrictedName);
+      },
+    };
 
     const propertiesObject = {};
-    for (var name in GofluxContext.prototype) {
-      if (validMethodNameMappings[name]) {
-        continue;
+
+    PROTOTYPE_METHOD_NAMES.forEach((name) => {
+      const shouldRestrictMethodAccess = !validMethodNameMappings[name];
+
+      if (shouldRestrictMethodAccess) {
+        propertiesObject[name] = restrictDefinition;
       }
-      propertiesObject[name] = {
-        value: restrictFn,
-      };
-    }
+    });
 
     return Object.create(this, propertiesObject);
   }
@@ -99,5 +103,7 @@ class GofluxContext {
   }
 
 }
+
+const PROTOTYPE_METHOD_NAMES = Object.getOwnPropertyNames(GofluxContext.prototype);
 
 export default GofluxContext;
