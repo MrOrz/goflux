@@ -1,3 +1,11 @@
+### 1.0.1 (2015-03-09)
+
+
+#### Bug Fixes
+
+* **Goflux:** defineStore will mixes some instance methods from EE ([11e79420](https://github.com/tomchentw/goflux/commit/11e7942054c8541791329987f48512c6bdbbe40c))
+
+
 ## 1.0.0 (2015-03-09)
 
 
