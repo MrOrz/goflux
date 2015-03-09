@@ -23,6 +23,7 @@ module.exports = {
   externals: [
     {
       "react": true, /* use the same library as node runtime */
+      "fetch": "node-fetch",
     },
   ],
   target: "node",

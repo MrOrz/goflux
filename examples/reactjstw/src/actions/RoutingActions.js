@@ -23,7 +23,7 @@ const RoutingActions = Goflux.defineActions("RoutingActions", function (context)
         context.dispatch("OPEN_ADMIN_USERS_PAGE", {/* payload */
         });
 
-        return context.getActions("RoutingActions").setPageTitle("Admin Users | Reactjstw");
+        return context.getActions("AdminUsersActions").loadList();
 
       } else if (matchedResult = url.match(/\/admin-users\/(\d+)/)) {
         const adminUserId = matchedResult[1];

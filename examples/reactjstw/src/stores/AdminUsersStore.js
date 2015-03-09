@@ -2,25 +2,24 @@ import {EventEmitter} from "events";
 import React from "react";
 import Goflux from "goflux";
 
-const RoutingStore = Goflux.defineStore("RoutingStore", {
+const AdminUsersStore = Goflux.defineStore("AdminUsersStore", {
   /*
-   * Mapping for ACTION_NAME to handler name for RoutingStore instance.
+   * Mapping for ACTION_NAME to handler name for AdminUsersStore instance.
    */
-  "SET_PAGE_TITLE": "_set_page_title_",
   "ADMIN_USERS_LIST_LOADED": "_admin_users_list_loaded_",
 },
 /*
- * A factory that can return a RoutingStore instance.
+ * A factory that can return a AdminUsersStore instance.
  * Of course, this can be an ES6 Class as well, but make sure you've extended
  * some implementation of EventEmitter.
  *
- * context.getStore("RoutingStore") will return this instance as well.
+ * context.getStore("AdminUsersStore") will return this instance as well.
  */
-class RoutingStore extends EventEmitter {
+class AdminUsersStore extends EventEmitter {
 
   constructor (context) {
     this._context = context;
-    this._pageTitle = null;
+    this._list = [];
   }
   /*
    * You must implement dehydrate/rehydrate methods pair in order to do
@@ -29,7 +28,7 @@ class RoutingStore extends EventEmitter {
    */
   dehydrate () {
     return {
-      _pageTitle: this._pageTitle,
+      _list: this._list,
     };
   }
 
@@ -37,8 +36,8 @@ class RoutingStore extends EventEmitter {
     React.__spread(this, persistedState);
   }
 
-  getPageTitle () {
-    return this._pageTitle;
+  getList () {
+    return this._list;
   }
   /*
    * Below are private functions and some dispatch handlers
@@ -49,18 +48,12 @@ class RoutingStore extends EventEmitter {
     this.emit("change");
   }
 
-  _set_page_title_ ({newPageTitle}) {
-    this._pageTitle = newPageTitle;
+  _admin_users_list_loaded_ ({list}) {
+    this._list = list;
 
     this._emit_change_();
   }
 
-  _admin_users_list_loaded_ ({list}) {
-    this._pageTitle = `Admin Users (${ list.length }) | Reactjstw`;
-
-    this._emit_change_();
-  };
-
 });
 
-export default RoutingStore;
+export default AdminUsersStore;

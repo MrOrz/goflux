@@ -17,6 +17,7 @@ module.exports = {
   },
   resolve: {
     alias: {
+      fetch: "whatwg-fetch",
       goflux: Path.resolve(__dirname, "../../../src"),
     },
   },
