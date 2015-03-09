@@ -1,5 +1,4 @@
 import {EventEmitter} from "events";
-const EventEmitterPrototype = EventEmitter.prototype;
 
 function createHandlerFn (storeInstance, eventMethodMappings) {
   return (rawPayload) => {
@@ -9,6 +8,9 @@ function createHandlerFn (storeInstance, eventMethodMappings) {
     }
   };
 }
+
+const EventEmitterPrototype = EventEmitter.prototype;
+const REQUIRED_EVENT_EMITTER_METHOD_NAMES = ["addListener", "emit", "removeListener"];
 
 class StoreDescriptor {
 
@@ -25,12 +27,11 @@ class StoreDescriptor {
   _create_with_context_ (context) {
     const storeInstance = new this._factory(context);
 
-    for (var fnName in EventEmitterPrototype) {
-      if (fnName in storeInstance) {
-        continue;
+    REQUIRED_EVENT_EMITTER_METHOD_NAMES.forEach((fnName) => {
+      if (!fnName in storeInstance) {
+        storeInstance[fnName] = EventEmitterPrototype[fnName];
       }
-      storeInstance[fnName] = EventEmitterPrototype[fnName];
-    }
+    });
 
     const dispatchHandler = createHandlerFn(storeInstance, this._eventMethodMappings);
 

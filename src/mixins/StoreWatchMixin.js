@@ -11,7 +11,7 @@ function StoreWatchMixinFactory (storeNames, changeEventName, handlerName) {
 
     componentDidMount () {
       storeNames.forEach((storeName) => {
-        this.gofluxStore(storeName).on(changeEventName, this[handlerName]);
+        this.gofluxStore(storeName).addListener(changeEventName, this[handlerName]);
       });
     },
 
