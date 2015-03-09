@@ -5,7 +5,10 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel src --out-dir lib",
+    "build_lib": "babel src --out-dir lib",
+    "build_dist": "webpack --output-file [name].js",
+    "build_dist_min": "webpack -p --output-file [name].min.js",
+    "build": "npm run build_lib && npm run build_dist && npm run build_dist_min",
     "dev": "babel src --out-dir lib --watch",
     "test": "jest"
   },
@@ -32,7 +35,9 @@
   },
   "homepage": "https://github.com/tomchentw/goflux",
   "devDependencies": {
-    "babel": "^4.7.1"
+    "babel": "^4.7.1",
+    "babel-loader": "^4.1.0",
+    "webpack": "^1.7.2"
   },
   "dependencies": {
     "flux": "^2.0.1"
