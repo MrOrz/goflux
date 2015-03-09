@@ -43,9 +43,9 @@ const MessageComposer = React.createClass({
       const text = this.state.text.trim();
       if (text) {
         /*
-         * this.gofluxAction is a method provided by GofluxMixin.
+         * this.gofluxActions is a method provided by GofluxMixin.
          */
-        this.gofluxAction("MessageActions").createMessage(text, this.props.threadID);
+        this.gofluxActions("MessageActions").createMessage(text, this.props.threadID);
       }
       this.setState({text: ""});
     }

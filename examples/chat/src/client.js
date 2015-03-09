@@ -17,10 +17,7 @@ React.render(
   document.getElementById("goflux"),
   () => {
     ChatWebAPIUtils.getAllMessages().then((rawMessages) => {
-      /*
-       * this.gofluxAction is a method provided by GofluxMixin.
-       */
-      return context.gofluxAction("ServerActions").receiveAll(rawMessages);
+      return context.getActions("ServerActions").receiveAll(rawMessages);
     });
   }
 );

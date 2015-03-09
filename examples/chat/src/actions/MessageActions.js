@@ -22,7 +22,7 @@ const MessageActions = Goflux.defineActions("MessageActions", function (context)
          */
         const message = ChatMessageUtils.getCreatedMessageData(text, currentThreadID);
         const promise = ChatWebAPIUtils.createMessage(message).then((createdMessage) => {
-          return context.gofluxAction("ServerActions").receiveCreatedMessage(createdMessage);
+          return context.getActions("ServerActions").receiveCreatedMessage(createdMessage);
         });
         /*
          * Ignore promise here since we don't care.

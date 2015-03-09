@@ -25,7 +25,7 @@ const RoutingActions = Goflux.defineActions("RoutingActions", function (context)
 
         return ChatWebAPIUtils.getAllMessages().then((rawMessages) => {
 
-          return context.gofluxAction("ServerActions").receiveAll(rawMessages);
+          return context.getActions("ServerActions").receiveAll(rawMessages);
         });
 
       } else if (matchedResult = url.match(/\/threads\/(\d+)/)) {
@@ -35,7 +35,7 @@ const RoutingActions = Goflux.defineActions("RoutingActions", function (context)
           id: threadId,
         });
 
-        context.gofluxAction("ThreadActions").clickThread(threadId);
+        context.getActions("ThreadActions").clickThread(threadId);
 
         return Promise.resolve(true);
       } else {
