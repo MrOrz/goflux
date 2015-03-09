@@ -28,9 +28,10 @@ class StoreDescriptor {
     const storeInstance = new this._factory(context);
 
     REQUIRED_EVENT_EMITTER_METHOD_NAMES.forEach((fnName) => {
-      if (!fnName in storeInstance) {
-        storeInstance[fnName] = EventEmitterPrototype[fnName];
+      if (fnName in storeInstance) {
+        return;
       }
+      storeInstance[fnName] = EventEmitterPrototype[fnName];
     });
 
     const dispatchHandler = createHandlerFn(storeInstance, this._eventMethodMappings);
