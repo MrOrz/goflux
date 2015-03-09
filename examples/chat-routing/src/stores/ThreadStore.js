@@ -42,6 +42,10 @@ class ThreadStore extends EventEmitter {
     return this._threads;
   }
 
+  getCount () {
+    return Object.keys(this.getAll()).length;
+  }
+
   getAllChrono () {
     const orderedThreads = [];
     for (var id in this._threads) {

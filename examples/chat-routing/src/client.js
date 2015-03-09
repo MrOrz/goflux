@@ -11,6 +11,7 @@ import goflux from "./goflux";
 import ChatApp from "./components/ChatApp.react";
 
 require("./client.css");
+ChatWebAPIUtils.clearLocalStorage();
 
 const context = goflux.createContext();
 
@@ -18,8 +19,6 @@ React.render(
   <ChatApp gofluxContext={context} />,
   document.getElementById("goflux"),
   () => {
-    ChatWebAPIUtils.getAllMessages().then((rawMessages) => {
-      return context.getActions("ServerActions").receiveAll(rawMessages);
-    });
+    context.getActions("RoutingActions").route(location.pathname);
   }
 );

@@ -12,13 +12,17 @@ import SAMPLE_DATA from "./SAMPLE_DATA";
 // the contents of the functions are just trying to simulate client-server
 // communication and server-side processing.
 const ChatWebAPIUtils = {
+
+  clearLocalStorage() {
+    localStorage.clear();
+  },
+
   getAllMessages () {
     /*
      * Referral implementations:
      *
      * @flux: http://git.io/pURh
      */
-    localStorage.clear();
     // simulate retrieving data from a database
     localStorage.setItem("messages", JSON.stringify(SAMPLE_DATA));
     // simulate success callback
