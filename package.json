@@ -1,8 +1,8 @@
 {
   "__template__gist__": "https://gist.github.com/tomchentw/0dc24c30955c1a6c94d4#file-package-json",
   "name": "goflux",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Advance flux solution",
   "main": "lib/index.js",
   "scripts": {
     "build_lib": "babel src --out-dir lib",
@@ -37,6 +37,7 @@
   "devDependencies": {
     "babel": "^4.7.1",
     "babel-loader": "^4.1.0",
+    "tomchentw-npm-dev": "^1.2.0",
     "webpack": "^1.7.2"
   },
   "dependencies": {
