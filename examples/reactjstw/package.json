@@ -8,9 +8,9 @@
     "build_client": "webpack --config config/webpack-client.js",
     "build_server": "webpack --config config/webpack-server.js",
     "build": "npm run build_client && npm run build_server",
-    "dev_client": "webpack --watch --config config/webpack-client.js",
-    "dev_server": "webpack --watch --config config/webpack-server.js",
-    "dev": "npm run dev_client & npm run dev_server & npm start",
+    "dev_client": "webpack --watch --config config/webpack-client.js &",
+    "dev_server": "webpack --watch --config config/webpack-server.js &",
+    "dev": "npm run dev_client && npm run dev_server && touch server/server.js && node-dev --harmony server/index.js",
     "test": "jest"
   },
   "repository": {
@@ -44,6 +44,7 @@
     "babel-loader": "^4.1.0",
     "css-loader": "^0.9.1",
     "jest": "^0.1.37",
+    "node-dev": "^2.6.1",
     "null-loader": "^0.1.1",
     "style-loader": "^0.8.3",
     "webpack": "^1.7.2",
