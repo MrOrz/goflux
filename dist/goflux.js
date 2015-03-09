@@ -308,9 +308,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var storeInstance = new this._factory(context);
 
 	        REQUIRED_EVENT_EMITTER_METHOD_NAMES.forEach(function (fnName) {
-	          if (!fnName in storeInstance) {
-	            storeInstance[fnName] = EventEmitterPrototype[fnName];
+	          if (fnName in storeInstance) {
+	            return;
 	          }
+	          storeInstance[fnName] = EventEmitterPrototype[fnName];
 	        });
 
 	        var dispatchHandler = createHandlerFn(storeInstance, this._eventMethodMappings);
