@@ -12,7 +12,7 @@ import ThreadSection from "./ThreadSection.react";
 const ChatApp = React.createClass({
   displayName: "ChatApp",
 
-  mixins: [GofluxMixin],
+  mixins: [GofluxMixin(React)],
 
   render () {
     return (

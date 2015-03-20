@@ -11,7 +11,7 @@ const ENTER_KEY_CODE = 13;
 const MessageComposer = React.createClass({
   displayName: "MessageComposer",
 
-  mixins: [GofluxMixin],
+  mixins: [GofluxMixin(React)],
 
   propTypes: {
     threadID: React.PropTypes.string.isRequired,

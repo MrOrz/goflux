@@ -10,7 +10,7 @@ import {GofluxMixin} from "goflux";
 const ThreadListItem = React.createClass({
   displayName: "ThreadListItem",
 
-  mixins: [GofluxMixin],
+  mixins: [GofluxMixin(React)],
 
   propTypes: {
     thread: React.PropTypes.object,

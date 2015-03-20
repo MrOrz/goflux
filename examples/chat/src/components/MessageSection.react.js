@@ -15,7 +15,7 @@ import MessageListItem from "./MessageListItem.react";
 const MessageSection = React.createClass({
   displayName: "MessageSection",
 
-  mixins: [GofluxMixin, StoreWatchMixin(["MessageStore", "ThreadStore"], CHANGE_EVENT, "_on_store_changed_")],
+  mixins: [GofluxMixin(React), StoreWatchMixin(["MessageStore", "ThreadStore"], CHANGE_EVENT, "_on_store_changed_")],
 
   _get_state_from_stores_ () {
     /*
@@ -36,6 +36,11 @@ const MessageSection = React.createClass({
   },
 
   render () {
+    if (!this.state.thread) {
+      return (
+        <div>Loading...</div>
+      );
+    }
     const messageListItems = this.state.messages.map((message) => {
       return (
         <MessageListItem
@@ -61,7 +66,11 @@ const MessageSection = React.createClass({
   },
 
   _scroll_to_bottom_ () {
-    var ul = this.refs.messageList.getDOMNode();
+    const {messageList} = this.refs;
+    if (!messageList) {
+      return;
+    }
+    const ul = messageList.getDOMNode();
     ul.scrollTop = ul.scrollHeight;
   },
 

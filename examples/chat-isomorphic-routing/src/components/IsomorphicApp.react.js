@@ -11,7 +11,7 @@ import ChatApp from "../../../chat/src/components/ChatApp.react";
 const IsomorphicApp = React.createClass({
   displayName: "IsomorphicApp",
 
-  mixins: [GofluxMixin],
+  mixins: [GofluxMixin(React)],
 
   propTypes: {
     dehydratedScript: React.PropTypes.string,
