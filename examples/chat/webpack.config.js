@@ -1,7 +1,9 @@
+var path = require("path");
+
 module.exports = {
-  context: __dirname + "/src",
+  context: path.resolve("./src"),
   entry: {
-  	client: "./client.js",
+    client: "./client.js",
   },
   module: {
     loaders: [{
@@ -14,12 +16,12 @@ module.exports = {
     }, ],
   },
   resolve: {
-  	alias: {
-  		goflux: __dirname + "/../../src",
-  	},
+    alias: {
+      goflux: path.resolve("../../src"),
+    },
   },
   output: {
-    path: __dirname + "/dist",
+    path: path.resolve("./dist"),
     filename: "[name].js"
   },
 };
