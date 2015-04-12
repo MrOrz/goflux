@@ -4,12 +4,12 @@
  * @flux: http://git.io/pU8w
  */
 import React from "react/addons";
-import {GofluxMixin} from "goflux";
+import {mixins} from "goflux";
 
 const MessageListItem = React.createClass({
   displayName: "MessageListItem",
 
-  mixins: [GofluxMixin(React)],
+  mixins: [mixins.GofluxMixin(React)],
 
   propTypes: {
     message: React.PropTypes.object,

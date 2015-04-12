@@ -4,7 +4,7 @@
  * @flux: http://git.io/pUcu
  */
 import React from "react/addons";
-import {GofluxMixin} from "goflux";
+import {mixins} from "goflux";
 
 import MessageSection from "./MessageSection.react";
 import ThreadSection from "./ThreadSection.react";
@@ -12,7 +12,7 @@ import ThreadSection from "./ThreadSection.react";
 const ChatApp = React.createClass({
   displayName: "ChatApp",
 
-  mixins: [GofluxMixin(React)],
+  mixins: [mixins.GofluxMixin(React)],
 
   render () {
     return (

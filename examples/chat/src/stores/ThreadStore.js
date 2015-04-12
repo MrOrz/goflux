@@ -4,18 +4,10 @@
  * @flux: http://git.io/pewu
  */
 import {EventEmitter} from "events";
-import Goflux from "goflux";
 
 import CHANGE_EVENT from "../utils/CHANGE_EVENT";
 import ChatMessageUtils from "../utils/ChatMessageUtils";
 
-const ThreadStore = Goflux.defineStore("ThreadStore", {
-  /*
-   * Mapping for ACTION_NAME to handler name for ThreadStore instance.
-   */
-  "CLICK_THREAD": "_click_thread_",
-  "RECEIVE_RAW_MESSAGES": "_receive_raw_messages_",
-},
 /*
  * A factory that can return a ThreadStore instance.
  * Of course, this can be an ES6 Class as well, but make sure you've extended
@@ -23,7 +15,7 @@ const ThreadStore = Goflux.defineStore("ThreadStore", {
  *
  * context.getStore("ThreadStore") will return this instance as well.
  */
-class ThreadStore extends EventEmitter {
+class ThreadStoreFactory extends EventEmitter {
 
   constructor (context) {
     this._context = context;
@@ -107,6 +99,6 @@ class ThreadStore extends EventEmitter {
     this._init_(rawMessages);
     this._emit_change_();
   }
-});
+}
 
-export default ThreadStore;
+export default ThreadStoreFactory;

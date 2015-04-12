@@ -3,9 +3,8 @@
  *
  * @flux: http://git.io/peWC
  */
-import Goflux from "goflux";
 
-const ThreadActions = Goflux.defineActions("ThreadActions", function (context) {
+function ThreadActionsFactory (context) {
   return {
     clickThread (threadID) {
       context.dispatch("CLICK_THREAD", {/* payload */
@@ -14,6 +13,6 @@ const ThreadActions = Goflux.defineActions("ThreadActions", function (context) {
       return Promise.resolve(true);
     },
   };
-});
+}
 
-export default ThreadActions;
+export default ThreadActionsFactory;

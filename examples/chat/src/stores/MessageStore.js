@@ -3,28 +3,27 @@
  *
  * @flux: http://git.io/pelB
  */
-import Goflux from "goflux";
+import {EventEmitter} from "events";
 
 import CHANGE_EVENT from "../utils/CHANGE_EVENT";
 import ChatMessageUtils from "../utils/ChatMessageUtils";
 
-const MessageStore = Goflux.defineStore("MessageStore", {
-  /*
-   * Mapping for ACTION_NAME to handler name for MessageStore instance.
-   */
-  "CLICK_THREAD": "_click_thread_",
-  "CREATE_MESSAGE": "_create_message_",
-  "RECEIVE_RAW_MESSAGES": "_receive_raw_messages_",
-},
 /*
  * A factory that can return a MessageStore instance.
  *
  * context.getStore("MessageStore") will return this instance as well.
  */
-function (context) {
+function MessageStoreFactory (context) {
+  const EEPrototype = EventEmitter.prototype;
   const _messages = {};
 
   return {
+    addListener: EEPrototype.addListener,
+
+    emit: EEPrototype.emit,
+
+    removeListener: EEPrototype.removeListener,
+
     get (id) {
       return _messages[id];
     },
@@ -116,6 +115,6 @@ function (context) {
       this._emit_change_();
     },
   };
-});
+}
 
-export default MessageStore;
+export default MessageStoreFactory;
