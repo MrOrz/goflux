@@ -19,6 +19,8 @@ React.render(
   <ChatApp gofluxContext={context} />,
   document.getElementById("goflux"),
   () => {
+    alert("Different routes changes the document title");
     context.getActions("RoutingActions").route(location.pathname);
+    alert("Did you see the difference?");
   }
 );

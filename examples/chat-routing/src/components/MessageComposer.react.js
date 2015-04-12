@@ -4,14 +4,14 @@
  * @flux: http://git.io/pUlh
  */
 import React from "react/addons";
-import {GofluxMixin} from "goflux";
+import {mixins} from "goflux";
 
 const ENTER_KEY_CODE = 13;
 
 const MessageComposer = React.createClass({
   displayName: "MessageComposer",
 
-  mixins: [GofluxMixin(React)],
+  mixins: [mixins.GofluxMixin(React)],
 
   propTypes: {
     threadID: React.PropTypes.string.isRequired,

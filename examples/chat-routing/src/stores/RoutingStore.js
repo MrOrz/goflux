@@ -4,19 +4,9 @@
  * @fluxible: http://git.io/pUg1
  */
 import {EventEmitter} from "events";
-import Goflux from "goflux";
 
 import CHANGE_EVENT from "../utils/CHANGE_EVENT";
 
-const RoutingStore = Goflux.defineStore("RoutingStore", {
-  /*
-   * Mapping for ACTION_NAME to handler name for RoutingStore instance.
-   */
-  "OPEN_THREAD_INDEX_PAGE": "_open_thread_index_page_",
-  "RECEIVE_RAW_MESSAGES": "_receive_raw_messages_",
-  "OPEN_THREAD_SHOW_PAGE": "_open_thread_show_page_",
-  "CLICK_THREAD": "_click_thread_",
-},
 /*
  * A factory that can return a RoutingStore instance.
  * Of course, this can be an ES6 Class as well, but make sure you've extended
@@ -24,7 +14,7 @@ const RoutingStore = Goflux.defineStore("RoutingStore", {
  *
  * context.getStore("RoutingStore") will return this instance as well.
  */
-class RoutingStore extends EventEmitter {
+class RoutingStoreFactory extends EventEmitter {
 
   constructor (context) {
     this._context = context;
@@ -76,6 +66,6 @@ class RoutingStore extends EventEmitter {
     this._emit_change_();
   }
 
-});
+}
 
-export default RoutingStore;
+export default RoutingStoreFactory;

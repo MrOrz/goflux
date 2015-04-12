@@ -5,12 +5,12 @@
  */
 import React from "react/addons";
 import cx from "react/lib/cx";
-import {GofluxMixin} from "goflux";
+import {mixins} from "goflux";
 
 const ThreadListItem = React.createClass({
   displayName: "ThreadListItem",
 
-  mixins: [GofluxMixin(React)],
+  mixins: [mixins.GofluxMixin(React)],
 
   propTypes: {
     thread: React.PropTypes.object,

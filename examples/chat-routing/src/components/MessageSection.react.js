@@ -5,7 +5,7 @@
  * @fluxxor:
  */
 import React from "react/addons";
-import {GofluxMixin, StoreWatchMixin} from "goflux";
+import {mixins} from "goflux";
 
 import CHANGE_EVENT from "../utils/CHANGE_EVENT";
 
@@ -15,7 +15,7 @@ import MessageListItem from "./MessageListItem.react";
 const MessageSection = React.createClass({
   displayName: "MessageSection",
 
-  mixins: [GofluxMixin(React), StoreWatchMixin(["MessageStore", "ThreadStore"], CHANGE_EVENT, "_on_store_changed_")],
+  mixins: [mixins.GofluxMixin(React), mixins.StoreWatchMixin(["MessageStore", "ThreadStore"], CHANGE_EVENT, "_on_store_changed_")],
 
   _get_state_from_stores_ () {
     /*
