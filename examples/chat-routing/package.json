@@ -1,0 +1,44 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/client.js",
+  "scripts": {
+    "start": "webpack-dev-server --content-base dist/",
+    "build": "webpack",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tomchentw/goflux"
+  },
+  "author": {
+    "name": "tomchentw",
+    "email": "developer@tomchentw.com",
+    "url": "https://github.com/tomchentw"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "http://tomchentw.mit-license.org"
+  },
+  "bugs": {
+    "url": "https://github.com/tomchentw/goflux/issues"
+  },
+  "homepage": "https://github.com/tomchentw/goflux",
+  "dependencies": {
+    "react": "^0.12.2"
+  },
+  "devDependencies": {
+    "babel-core": "^4.7.3",
+    "babel-loader": "^4.1.0",
+    "css-loader": "^0.9.1",
+    "jest": "^0.1.37",
+    "routr": "^0.1.0",
+    "style-loader": "^0.8.3",
+    "webpack": "^1.7.2",
+    "webpack-dev-server": "^1.7.0"
+  },
+  "jest": {
+    "rootDir": "./js"
+  }
+}
