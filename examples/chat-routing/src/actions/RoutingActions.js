@@ -3,12 +3,11 @@
  *
  * @fluxible: http://git.io/pUg1
  */
-import Goflux from "goflux";
 
 import ChatWebAPIUtils from "../utils/ChatWebAPIUtils";
 import router from "../utils/router";
 
-const RoutingActions = Goflux.defineActions("RoutingActions", function (context) {
+function RoutingActionsFactory (context) {
   return {
     route (url) {
       /*
@@ -53,6 +52,6 @@ const RoutingActions = Goflux.defineActions("RoutingActions", function (context)
       return Promise.resolve(true);
     },
   };
-});
+}
 
-export default RoutingActions;
+export default RoutingActionsFactory;

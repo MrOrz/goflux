@@ -3,12 +3,11 @@
  *
  * @flux: http://git.io/peYg
  */
-import Goflux from "goflux";
 
 import ChatMessageUtils from "../utils/ChatMessageUtils";
 import ChatWebAPIUtils from "../utils/ChatWebAPIUtils";
 
-const MessageActions = Goflux.defineActions("MessageActions", function (context) {
+function MessageActionsFactory (context) {
   return {
     createMessage (text, currentThreadID) {
       context.dispatch("CREATE_MESSAGE", {/* payload */
@@ -31,6 +30,6 @@ const MessageActions = Goflux.defineActions("MessageActions", function (context)
       });
     },
   };
-});
+}
 
-export default MessageActions;
+export default MessageActionsFactory;

@@ -4,17 +4,9 @@
  * @flux: http://git.io/peiA
  */
 import {EventEmitter} from "events";
-import Goflux from "goflux";
 
 import CHANGE_EVENT from "../utils/CHANGE_EVENT";
 
-const UnreadThreadStore = Goflux.defineStore("UnreadThreadStore", {
-  /*
-   * Mapping for ACTION_NAME to handler name for UnreadThreadStore instance.
-   */
-  "CLICK_THREAD": "_click_thread_",
-  "RECEIVE_RAW_MESSAGES": "_receive_raw_messages_",
-},
 /*
  * A factory that can return a UnreadThreadStore instance.
  * Of course, this can be an ES6 Class as well, but make sure you've extended
@@ -22,7 +14,7 @@ const UnreadThreadStore = Goflux.defineStore("UnreadThreadStore", {
  *
  * context.getStore("UnreadThreadStore") will return this instance as well.
  */
-class UnreadThreadStore extends EventEmitter {
+class UnreadThreadStoreFactory extends EventEmitter {
 
   constructor (context) {
     this._context = context;
@@ -58,6 +50,6 @@ class UnreadThreadStore extends EventEmitter {
 
     this._emit_change_();
   }
-});
+}
 
-export default UnreadThreadStore;
+export default UnreadThreadStoreFactory;

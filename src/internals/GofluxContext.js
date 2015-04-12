@@ -1,6 +1,8 @@
 import Dispatcher from "flux/lib/Dispatcher";
 import invariant from "flux/lib/invariant";
 
+const REQUIRED_EVENT_EMITTER_METHOD_NAMES = ["addListener", "emit", "removeListener"];
+
 class GofluxContext {
 
   dispatch (eventName, payload) {
@@ -53,6 +55,7 @@ class GofluxContext {
     this._actionsContext = this._create_restricted_context_("actions", {
       dispatch: true,
       getActions: true,
+      getStore: true,
     });
 
     this._storeContext = this._create_restricted_context_("store", {
@@ -89,17 +92,42 @@ class GofluxContext {
   _initialize_ (actionsDescriptorsMap, storeDescriptorsMap) {
     for (var actionsName in actionsDescriptorsMap) {
       const actionsDescriptor = actionsDescriptorsMap[actionsName];
-      const actionsInstance = actionsDescriptor._create_with_context_(this._actionsContext);
-      this._actionsBy[actionsName] = actionsInstance;
+      this._create_actions_(actionsName, actionsDescriptor);
     }
 
     for (var storeName in storeDescriptorsMap) {
       const storeDescriptor = storeDescriptorsMap[storeName];
-      const {storeInstance, dispatchHandler} = storeDescriptor._create_with_context_(this._storeContext);
-
-      this._storesBy[storeName] = storeInstance;
-      this._dispatchTokenBy[storeName] = this._dispatcher.register(dispatchHandler);
+      this._create_store_(storeName, storeDescriptor);
     }
+  }
+
+  _create_actions_ (actionsName, actionsDescriptor) {
+    const actionsInstance = new actionsDescriptor.factory(this._actionsContext);
+    this._actionsBy[actionsName] = actionsInstance;
+  }
+
+  _create_store_ (storeName, storeDescriptor) {
+    const {eventMethodMappings} = storeDescriptor;
+    const storeInstance = new storeDescriptor.factory(this._storeContext);
+
+    REQUIRED_EVENT_EMITTER_METHOD_NAMES
+      .filter(fnName => !(fnName in storeInstance))
+      .forEach((fnName, index, array) => {
+        invariant(false, `
+The store instance returned by %s factory should contains mixins of
+EventEmitter. Please 1. extend the factory from EventEmitter, or
+2. Manually mixin these methods (%s) from EventEmitter.prototype to your factory
+`, storeName, array.join(","));
+      });
+
+    this._storesBy[storeName] = storeInstance;
+    // Register handler
+    this._dispatchTokenBy[storeName] = this._dispatcher.register((rawPayload) => {
+      const methodName = eventMethodMappings[rawPayload._event_name_];
+      if (methodName) {
+        storeInstance[methodName](rawPayload._payload_);
+      }
+    });
   }
 
 }
