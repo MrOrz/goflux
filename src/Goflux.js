@@ -1,5 +1,3 @@
-import ActionsDescriptor from "./internals/ActionsDescriptor";
-import StoreDescriptor from "./internals/StoreDescriptor";
 import GofluxContext from "./internals/GofluxContext";
 
 class Goflux {
