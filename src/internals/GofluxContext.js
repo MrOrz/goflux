@@ -53,6 +53,7 @@ class GofluxContext {
     this._actionsContext = this._create_restricted_context_("actions", {
       dispatch: true,
       getActions: true,
+      getStore: true,
     });
 
     this._storeContext = this._create_restricted_context_("store", {
